@@ -14,7 +14,7 @@ function urlIs(string $value) {
 function abort(int $status = 404) {
     http_response_code($status);
 
-    require "controllers/{$status}.php";
+    require "views/{$status}.view.php";
 
     die();
 }
