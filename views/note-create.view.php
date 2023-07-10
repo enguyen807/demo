@@ -12,10 +12,22 @@ require("views/partials/banner.php");
                         <div class="col-span-full">
                             <label for="title" class="block text-sm font-medium leading-6 text-gray-900">Note Body</label>
                             <div class="mt-2">
-                                <textarea id="title" name="title" rows="3"
-                                    class="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-emerald-600 sm:text-sm sm:leading-6"></textarea>
+                                <textarea 
+                                    id="title" 
+                                    name="title" 
+                                    rows="3"
+                                    class="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-emerald-600 sm:text-sm sm:leading-6"
+                         
+                                >
+                                    <?= isset($_POST['title']) ?? '' ?>
+                                </textarea>
                             </div>
-                            <p class="mt-3 text-sm leading-6 text-gray-600">Write a few sentences for your notes.</p>
+
+                            <?php if (isset($errors['title'])) : ?>
+                                <p class="mt-3 text-sm leading-6 text-red-600">
+                                    <?= $errors['title'] ?>
+                                </p>
+                            <?php endif; ?>
                         </div>
                     </div>
                 </div>
