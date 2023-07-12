@@ -27,6 +27,8 @@ function authorize(bool $condition, int $status = Core\Response::FORBIDDEN)
     if (!$condition) {
         abort($status);
     }
+
+    return true;
 }
 
 function base_path($path) 
