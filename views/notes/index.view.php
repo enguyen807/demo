@@ -8,7 +8,7 @@ require base_path("views/partials/banner.php");
         <ul>
             <?php foreach ($notes as $note) : ?>
                 <li>
-                    <a href="/note?id=<?= $note['id'] ?>" class="text-green-500 hover:underline">
+                    <a href="/note?id=<?= $note['id'] ?>" class="text-emerald-500 hover:underline">
                         <?= htmlspecialchars($note['title']) ?>
                     </a>
                 </li>
@@ -16,7 +16,7 @@ require base_path("views/partials/banner.php");
         </ul>
 
         <p class="mt-6">
-            <a href="/notes/create" class="rounded-md bg-green-600 px-3.5 py-2.5 text-sm font-semibold text-white shadow-sm hover:bg-green-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-green-600">+ Create Note</a>
+            <a href="/notes/create" class="rounded-md bg-emerald-600 px-3.5 py-2.5 text-sm font-semibold text-white shadow-sm hover:bg-emerald-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-emerald-600">+ Create Note</a>
         </p>
     </div>
 </main>
