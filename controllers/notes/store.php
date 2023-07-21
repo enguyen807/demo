@@ -4,7 +4,6 @@ use Core\App;
 use Core\Database;
 use Core\Validator;
 
-require base_path('core/Validator.php');
 $db = App::resolve(Database::class);
 
 $errors = [];
