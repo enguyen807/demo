@@ -16,4 +16,8 @@ $router->get('/notes/create', 'controllers/notes/create.php');
 $router->post('/notes', 'controllers/notes/store.php');
 
 $router->get('/register', 'controllers/registration/create.php')->middleware('guest');
-$router->post('/register', 'controllers/registration/store.php');
+$router->post('/register', 'controllers/registration/store.php')->middleware('guest');
+
+$router->get('/login', 'controllers/sessions/create.php')->middleware('guest');
+$router->post('/login', 'controllers/sessions/store.php')->middleware('guest');
+$router->delete('/logout', 'controllers/sessions/destroy.php')->middleware('auth');

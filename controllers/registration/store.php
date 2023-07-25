@@ -4,6 +4,8 @@ use Core\App;
 use Core\Database;
 use Core\Validator;
 
+$db = App::resolve(Database::class);
+
 $email = $_POST['email'];
 $password = $_POST['password'];
 
@@ -24,7 +26,6 @@ if (!empty($errors)) {
 }
 
 // Check if account already exists
-$db = App::resolve(Database::class);
 
 $user = $db->query('SELECT * FROM users where email = :email', [
     'email' => $email
@@ -32,17 +33,18 @@ $user = $db->query('SELECT * FROM users where email = :email', [
 
 // dd($result);
 if ($user) {
-    header('location: /');
-    exit();
+    return view('registration/create', [
+        'errors' => [
+            'email' => 'Email has already been registered!'
+        ]
+    ]);
 } else {
     $db->query('INSERT INTO users(email, password) VALUES(:email, :password)', [
         'email' => $email,
         'password' => password_hash($password, PASSWORD_DEFAULT)
     ]);
 
-    $_SESSION['user'] = [
-        'email' => $email
-    ];
+    login($user);
 
     header('location: /');
     exit();
