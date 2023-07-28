@@ -42,18 +42,8 @@ function view($path, $attr = [])
     require base_path("views/{$path}.view.php");
 }
 
-function login($user)
+function redirect($path)
 {
-    $_SESSION['user'] = [
-        'email' => $user['email']
-    ];
-}
-
-function logout()
-{
-    session_unset();
-    session_destroy();
-    session_write_close();
-    setcookie(session_name(),'',0,'/');
-    session_regenerate_id(true);
+    header("location: {$path}");
+    exit();
 }
