@@ -1,24 +1,19 @@
 <?php
 
 use Core\Authenticator;
-use Core\Session;
 use Http\Forms\LoginForm;
 
-$email = $_POST['email'];
-$password = $_POST['password'];
+$form = LoginForm::validate($attr = [
+    'email' => $_POST['email'],
+    'password' => $_POST['password']
+]);
 
-$form = new LoginForm();
+$isAuth = (new Authenticator)->attempt($attr['email'], $attr['password']);
 
-if ($form->validate($email, $password)) {
-    $auth = new Authenticator();
-
-    if ($auth->attempt($email, $password)) {
-        redirect('/');
-    }
-
-    $form->setError('email', 'Incorrect username or password.');
+if (!$isAuth) {
+    $form
+        ->setError('email', 'Incorrect username or password.')
+        ->throw();
 }
 
-Session::flash('errors', $form->getErrors());
-
-return redirect('login/');
+\redirect('/');
